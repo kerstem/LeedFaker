@@ -57,7 +57,7 @@ PRODUCTS = [
     ]
     
 def generate_phone():
-    return f"+79{random.randint(10,89)}{random.randint(100,999)}{random.randint(10,99)}{random.randint(10,99)}"
+    return f"9{random.randint(10,89)}{random.randint(100,999)}{random.randint(10,99)}{random.randint(10,99)}"
 
 def generate_lead():
     name = random.choice(NAMES)
