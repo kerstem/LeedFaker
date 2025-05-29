@@ -12,8 +12,7 @@ NAMES = [
     "Елизавета",
     "Дарья",
     "Мария",
-    "Марина",
-    
+    "Марина"
     ]
     
 PRODUCTS = [
@@ -56,3 +55,17 @@ PRODUCTS = [
     "матрас регал 160",
     "матрас регал 180"
     ]
+    
+def generate_phone():
+    return f"+79{random.randint(10,89)}{random.randint(100,999)}{random.randint(10,99)}{random.randint(10,99)}"
+
+def generate_lead():
+    name = random.choice(NAMES)
+    phone = generate_phone()
+    comment = random.choice(PRODUCTS)
+    return name, phone, comment
+    
+if __name__=="__main__":
+    name, phone, comment = generate_lead()
+    print(f"{name}|{phone}|{comment}")
+    
