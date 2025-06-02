@@ -15,46 +15,47 @@ NAMES = [
     "Марина"
     ]
     
-PRODUCTS = [
-    "диван Ralf 2х секц",
-    "диван Ralf 3х секц",
-    "диван Домо про 160",
-    "диван Домо про 180",
-    "диван монако",
-    "диван локо про",
-    "диван вега",
-    "диван лагуна",
-    "кровать рейчел 160",
-    "кровать рейчел 180",
-    "кровать рейчел 200",
-    "кровать сильвана 160",
-    "кровать сильванаа 180",
-    "кровать сильвана 200",
-    "кровать магика бокс 160",
-    "кровать магика бокс 180",
-    "кровать веста 160",
-    "кровать веста 180",
-    "кровать доменико 160",
-    "кровать доменико 180",
-    "кровать орландо 160",
-    "кровать орландо 180",
-    "кровать милана 160",
-    "кровать милана 180",
-    "матрас оригнал про 140",
-    "матрас оригнал про 160",
-    "матрас оригнал про 180",
-    "матрас орто хард 140",
-    "матрас орто хард 160",
-    "матрас орто хард 180",
-    "матрас денвер хард 140",
-    "матрас денвер хард 160",
-    "матрас денвер хард 180",
-    "матрас атланта медиум 140",
-    "матрас атланта медиум 160",
-    "матрас атланта медиум 180",
-    "матрас регал 160",
-    "матрас регал 180"
-    ]
+PRODUCTS = {
+    "матрас Serta Denver Hard": 22,
+    "матрас Family Strong": 14,
+    "кровать Pola": 14,
+    "матрас Askona Ortho Hard": 8,
+    "матрас Serta Atlanta Medium": 15,
+    "матрас Family Comfort": 7,
+    "матрас Askona Ortho Medium": 5,
+    "матрас Classic Brilliant Duo":	5,
+    "матрас Serta Vermont Medium":	5,
+    "кровать VIRGINIO":	4,
+    "диван Локо ПРО":	4,
+    "матрас ASKONA BENEFIT": 5,
+    "кровать ELISA":	3,
+    "кровать Innovo ice": 3,
+    "кровать Вега Nova": 3,
+    "матрас Family Lovely": 2,
+    "кровать Milora": 2,
+    "кровать ORLANDO": 2,
+    "кровать Vanessa": 2,
+    "кровать Milana New": 2,
+    "матрас Askona Flash": 1,
+    "матрас COMFORT PLUS": 1,
+    "матрас Ergo Adaptive Hard": 1,
+    "кровать Luara": 1,
+    "матрас Original": 1,
+    "матрас Serta Arizona Duo": 1,
+    "диван Карина Nova": 1,
+    "диван Кларк": 1,
+    "диван Меллоу": 1,
+    "диван Сван": 1,
+    "диван Трентон": 1,
+    "диван Квина Нью": 1,
+    "кровать Niks": 1,
+    "кровать Marcello": 1,
+}
+
+POPULATION = [s for s in PRODUCTS.keys()]
+WEIGHTS = [s for s in PRODUCTS.values()]
+SIZES = ["200*160","200*180","200*140"]
+SIZES_W = [6,3,1]
     
 def generate_phone():
     return f"9{random.randint(10,89)}{random.randint(100,999)}{random.randint(10,99)}{random.randint(10,99)}"
@@ -62,10 +63,15 @@ def generate_phone():
 def generate_lead():
     name = random.choice(NAMES)
     phone = generate_phone()
-    comment = random.choice(PRODUCTS)
+    comment = random.choices(POPULATION, weights = WEIGHTS)[0]
     return name, phone, comment
     
+    
 if __name__=="__main__":
-    name, phone, comment = generate_lead()
-    print(f"{name}|{phone}|{comment}")
+    for i in range(10):
+        name, phone, comment = generate_lead()
+        if "матрас" in comment or "кровать" in comment:
+            size = random.choices(SIZES, weights=SIZES_W)[0]
+            comment+=" "+size
+        print(f"{name}|{phone}|*{comment}")
     
